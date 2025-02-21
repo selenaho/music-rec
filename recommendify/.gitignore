@@ -130,4 +130,4 @@ ehthumbs.db
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # No .pyc files
-app/__pycache__
+home/__pycache__

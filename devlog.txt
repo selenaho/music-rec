@@ -4,3 +4,12 @@ Gordon Mo, Selena Ho, Jacky Wong
 
 Gordon -- 2025-2-20 10:30 PM
 - Created dummy database and implemented test templates to be rendered by home page.
+
+Selena -- 2023-2-23 5:40 PM
+- Added spotify app to set up backend for calls to spotify api - keeping it separate from other code to be neater
+- still need to connect to frontend but the paths for us to make our request to spotify api, authenticate user, and check if user is authenticated is set up
+- model updated so that we can store user tokens 
+- utils.py storing the functions that are directly interacting with the database
+- credentials.py is storing secret key and id and stuff
+- also updated mysite's urls.py to include the new urls that i've added to spotify urls.py
+- code has not been thoroughly tested because i've not connected to frontend and actually tested requesting+receiving data yet

@@ -134,3 +134,5 @@ ehthumbs.db
 **/__pycache__/
 **/*.pyc
 
+# no secret keys
+credentials.py

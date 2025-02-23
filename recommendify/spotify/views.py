@@ -18,7 +18,9 @@ class AuthURL(APIView):
             'response_type': 'code',
             'redirect_uri': REDIRECT_URI,
             'client_id': CLIENT_ID
-        }).prepare.url
+        }).prepare().url
+
+        print(url)
 
         return Response({'url': url}, status=status.HTTP_200_OK)
 

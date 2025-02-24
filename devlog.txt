@@ -18,3 +18,7 @@ Selena -- 2025-2-23 6:28 PM
 - app is able to connect to someone's spotify account (tested on my account)
 - need to test out getting the data we need from spotify still though
 - also removing secret keys from github repo (accidentally added oops - will be changing the keys)
+
+Selena -- 2025-2-23 6:59 PM
+- all three spotify paths officially work!!!! - able to connect to spotify and user is able to authorize us to access their data YAY
+- now need to get the data from spotify so that we can make music recs

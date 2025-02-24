@@ -6,6 +6,7 @@ from requests import post
 
 def get_user_tokens(session_id):
     user_tokens = SpotifyToken.objects.filter(user=session_id)
+    print(user_tokens)
     if user_tokens.exists():
         return user_tokens[0]
     else:
@@ -30,7 +31,7 @@ def is_spotify_authenticated(session_id):
     tokens = get_user_tokens(session_id)
     
     if tokens:
-        if token.expires_in <= timezone.now():
+        if tokens.expires_in <= timezone.now():
             #need to refresh token
             refresh_spotify_token(session_id)
         return True

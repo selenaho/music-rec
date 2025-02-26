@@ -22,3 +22,7 @@ Selena -- 2025-2-23 6:28 PM
 Selena -- 2025-2-23 6:59 PM
 - all three spotify paths officially work!!!! - able to connect to spotify and user is able to authorize us to access their data YAY
 - now need to get the data from spotify so that we can make music recs
+
+Gordon -- 2025-2-26 05:30 PM
+- added react frontend and connected with backend using a tutorial, so will have to edit code.
+- need to work on js files to reflect proper routing. 

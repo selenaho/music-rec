@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
 from .models import Question
+from rest_framework import viewsets
+from .serializers import TodoSerializer
+from .models import Todo
 
 def index(request):
     latest_question_list = Question.objects.order_by("-pub_date")[:5]
@@ -21,3 +24,7 @@ def results(request):
 
 def share(request):
     return HttpResponse("Hello, world. You're at the share page.")
+
+class TodoViewSet(viewsets.ModelViewSet):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer

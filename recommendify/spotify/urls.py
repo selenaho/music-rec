@@ -8,5 +8,6 @@ urlpatterns = [
     path('redirect', spotify_callback),
     path('is-authenticated', IsAuthenticated.as_view()),
     path('top-artists', TopArtists.as_view(), name='top-artists'),
-    path('top-tracks', TopTracks.as_view())
+    path('top-tracks', TopTracks.as_view()),
+    path('recently-played', RecentTracks.as_view())
 ]

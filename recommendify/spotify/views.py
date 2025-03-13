@@ -82,9 +82,6 @@ class TopArtists(APIView):
             followers = (item['followers'])['total']
             response.append({"name": name, "followers": followers})
 
-
-        #print(response)
-
         return Response(response, status=status.HTTP_200_OK)
 
 class TopTracks(APIView):
@@ -114,7 +111,34 @@ class TopTracks(APIView):
             song_name = item['name']
             response.append({"name": song_name, "artist": artist_string})
 
+        return Response(response, status=status.HTTP_200_OK)
+
+class RecentTracks(APIView):
+    def get(self, request, format=None):
+        #default settings for top artists is top 10, medium time range (approx last 6 months), and offset 0 (returns the first item) 
+
+        endpoint = "player/recently-played"
+
+        response = execute_spotify_api_call(self.request.session.session_key, endpoint)
 
         #print(response)
+
+        #handling case of if we get error or nothing returned
+        if 'error' in response or 'items' not in response:
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        
+        items = response.get('items')
+
+        response = []
+        for item in items:
+            #print(item['track']['album'])
+            artist_string = ""
+            for i, artist in enumerate(item.get('track').get('album').get('artists')):
+                if i > 0:
+                    artist_string += ", "
+                name = artist.get('name')
+                artist_string += name
+            song_name = item['track']['name']
+            response.append({"name": song_name, "artist": artist_string})
 
         return Response(response, status=status.HTTP_200_OK)

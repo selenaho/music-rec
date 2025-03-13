@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from requests import Request, post
 from rest_framework import status
 from rest_framework.response import Response
-from .util import update_or_create_user_tokens, is_spotify_authenticated
+from .util import *
 
 #gives us the url for the request we're making to spotify api
 class AuthURL(APIView):
@@ -50,10 +50,33 @@ def spotify_callback(request, format=None):
 
     update_or_create_user_tokens(request.session.session_key, access_token, token_type, expires_in, refresh_token)
 
-    return redirect('home:home')
+    #return redirect('home:home') #urls are different now after react was added to app so home:home not working right now, fix later
+    return redirect('spotify:top-artists')
+
 
 #so frontend knows if user is authenticated or not this is the endpoint we hit to do so:
 class IsAuthenticated(APIView):
     def get(self, request, format=None):
         is_authenticated = is_spotify_authenticated(self.request.session.session_key)
         return Response({'status': is_authenticated}, status=status.HTTP_200_OK) 
+
+class TopArtists(APIView):
+    def get(self, request, format=None):
+        #default settings for top artists is top 10, medium time range (approx last 6 months), and offset 0 (returns the first item) 
+
+        endpoint = "top/artists"
+
+        response = execute_spotify_api_call(self.request.session.session_key, endpoint)
+
+        print(response)
+
+        #handling case of if we get error or nothing returned
+        if 'error' in response or 'items' not in response:
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        
+        items = response.get('items')
+
+        #print(response)
+
+        return Response(response, status=status.HTTP_200_OK)
+

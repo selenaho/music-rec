@@ -36,3 +36,7 @@ Selena -- 2025-3-12 11:56 PM
 - also getting Can't resolve 'bootstrap/dist/css/bootstrap.css' error in frontend side but doesn't seem to be affecting anything for now so it's a later problem, just noting it here to remember it
 - might also just be an issue on my end
 - still need to clean up data because right now there's a lot of unnecessary things we won't need to use (image urls for example) so no need to send that over to frontend
+
+Selena -- 2025-3-13 2:14 PM
+- cleaned up /spotify/top-artists to only give name of artist and how many followers they have
+- also added /spotify/top-tracks endpoint to give user's top songs (cleaned up data to give name of song and name(s) of artist(s))

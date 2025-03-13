@@ -26,3 +26,13 @@ Selena -- 2025-2-23 6:59 PM
 Gordon -- 2025-2-26 05:30 PM
 - added react frontend and connected with backend using a tutorial, so will have to edit code.
 - need to work on js files to reflect proper routing. 
+
+Jacky -- 2025-3-11 12:23 AM
+- created components folder in frontend where website frontend will be designed (still in progress)
+
+Selena -- 2025-3-12 11:56 PM
+- /spotify/top-artists now displays user's top artists!! (10 specifically and these artists are the top from past 6 months)
+- urls got changed after adding react so after getting account authorized, user is getting redirected to spotify/top-artists which I'll change once base url is back up and running again
+- also getting Can't resolve 'bootstrap/dist/css/bootstrap.css' error in frontend side but doesn't seem to be affecting anything for now so it's a later problem, just noting it here to remember it
+- might also just be an issue on my end
+- still need to clean up data because right now there's a lot of unnecessary things we won't need to use (image urls for example) so no need to send that over to frontend

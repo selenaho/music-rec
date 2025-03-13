@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+.Hero {
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.Hero h1 {
+  font-size: 3rem;
+  color: white;
+}
+
+.Hero button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #ff6f61;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.Hero button:hover {
+  background-color: #d04a3a;
+}

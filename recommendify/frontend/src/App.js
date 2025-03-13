@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Header from './components/header';
+import Hero from './components/Hero';
+import './App.css';
+
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
@@ -22,5 +26,14 @@ const TodoList = () => {
     </ul>
   );
 };
+
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <Hero />
+    </div>
+  )
+}
 
 export default TodoList;

@@ -4,11 +4,16 @@ import './headerStyles.css'
 
 function Header() {
     return (
-        <div className='header'>
-            <div>
-                <h2>RECOMMENDIFY</h2>
+        <>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Recommendify</span>
+            <button type="button" class="btn btn-success">
+                Connect account
+            </button>
             </div>
-        </div>
+        </nav>
+        </>
     )
 }
 

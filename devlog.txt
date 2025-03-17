@@ -43,3 +43,7 @@ Selena -- 2025-3-13 2:14 PM
 
 Selena -- 2025-3-13 3:56 PM
 - /spotify/recently-played now displays user's recently listened to songs (song name + name(s) of artist(s))
+
+Gordon -- 2025-3-16 10:03 PM
+- started on landing page designing
+- delete unnecessary files in frontend

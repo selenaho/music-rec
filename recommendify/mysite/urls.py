@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 from home import views
-
+from spotify.views import AuthURL
 
 router = routers.DefaultRouter()
 router.register(r'home', views.TodoViewSet, 'home')

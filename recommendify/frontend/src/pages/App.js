@@ -27,9 +27,20 @@ import Hero from '../components/Hero';
 // };
 
 function App() {
+  const [url, setData] = useState('');
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('spotify/get-auth-url');
+      const result = await response.json();
+      setData(result.url);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <Header />
+      <Header url={url}/>
       <Hero />
     </div>
   )

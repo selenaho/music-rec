@@ -47,3 +47,16 @@ Selena -- 2025-3-13 3:56 PM
 Gordon -- 2025-3-16 10:03 PM
 - started on landing page designing
 - delete unnecessary files in frontend
+
+Selena -- 2025-3-20 9:17 PM
+- updated the post authenticating path after user presses green connect to spotify button
+- now goes to auth url -> callback function -> frontend base url (backend) -> this base url makes call to index function -> index function returns redirect to http://127.0.0.1:3000/top-artists 
+- also updated Artists.js (specifically useState and what's getting returned) to print out user's top artists' names and num of followers
+- now we can see user's top artists in the frontend page!!!!!!
+
+Selena -- 2025-3-20 9:30 PM
+- ok so what i did above was unnecessary (in terms of all the post auth url stuff in the first and second bullet points)
+- basically redirecting to http://localhost:3000/top-artists DOES NOT WORK and caused the issue
+- redirecting to http://127.0.0.1:3000/top-artists WORKS and i can redirect to this directly from the return of the callback function with successful calls to backend endpoint to get top artists
+- don't know why though will need to figure it out later
+- will push first with the probably useless files in case they turn out to be not so useless

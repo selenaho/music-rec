@@ -52,7 +52,9 @@ def spotify_callback(request, format=None):
     update_or_create_user_tokens(request.session.session_key, access_token, token_type, expires_in, refresh_token)
 
     #return redirect('home:home') #urls are different now after react was added to app so home:home not working right now, fix later
-    return redirect('http://localhost:3000/top-artists')
+    #return redirect('http://localhost:3000/top-artists') #DOES NOT WORK!!!!!! LEAVING HERE SO WE DO NOT ATTEMPT THIS AGAIN BECAUSE IT WILL NOT WORK!!!! - selena
+    #return redirect('frontend:')
+    return redirect('http://127.0.0.1:3000/top-artists')
 
 
 #so frontend knows if user is authenticated or not this is the endpoint we hit to do so:

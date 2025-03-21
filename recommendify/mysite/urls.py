@@ -28,5 +28,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("spotify/", include("spotify.urls")),
     path('', views.home),
-    path('frontend/', include('frontend.urls')),
+    #path('frontend/', include('frontend.urls')),
 ]

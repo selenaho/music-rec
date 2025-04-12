@@ -4,3 +4,9 @@
     color: #fff;
     position: relative;
 }
+
+.img-thumbnails{
+    width: 20%;
+    height: auto;
+    object-fit: cover;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import './headerStyles.css'
-import SpotifyIcon from '../../../frontend/src/components/SpotifyIcon.png'
+import SpotifyIcon from './SpotifyIcon.png'
 
 function Header({url}) {
     const s = "Connect Account "

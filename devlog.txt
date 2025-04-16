@@ -64,3 +64,7 @@ Selena -- 2025-3-20 9:30 PM
 Selena -- 2025-4-11 4:26 PM
 - changed top-artists frontend route to spotify-data
 - it now displays the user's top artists, top tracks, and recent listens
+
+Selena -- 2025-4-16 4:10 PM
+- able to connect to open ai api and feed it test data to get song recommendations (testing in tests.py)
+- however, the song recommendations being sent back aren't always real songs and/or real artists

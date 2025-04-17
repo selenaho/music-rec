@@ -68,3 +68,7 @@ Selena -- 2025-4-11 4:26 PM
 Selena -- 2025-4-16 4:10 PM
 - able to connect to open ai api and feed it test data to get song recommendations (testing in tests.py)
 - however, the song recommendations being sent back aren't always real songs and/or real artists
+
+Jacky -- 2025-4-17 12:33 AM
+- added last.fm folder to recommend similar artists using last.fm api
+- still working on integrating the last.fm api to backend and frontend

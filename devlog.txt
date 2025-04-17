@@ -72,3 +72,7 @@ Selena -- 2025-4-16 4:10 PM
 Jacky -- 2025-4-17 12:33 AM
 - added last.fm folder to recommend similar artists using last.fm api
 - still working on integrating the last.fm api to backend and frontend
+
+Jacky -- 2025-4-17 7:50 PM
+- last.fm api is now able to show similar artists but there is an issue for some artists that have a name in another language
+- also added spotify api endpoints for retrieving an artist and their top tracks

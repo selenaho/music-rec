@@ -19,6 +19,7 @@ from django.urls import include, path
 from rest_framework import routers
 from home import views
 from spotify.views import AuthURL
+from lastfmapi.views import *
 
 router = routers.DefaultRouter()
 router.register(r'home', views.TodoViewSet, 'home')
@@ -27,6 +28,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path("admin/", admin.site.urls),
     path("spotify/", include("spotify.urls")),
+    path("lastfm/", include("lastfmapi.urls")),
     path('', views.home),
     #path('frontend/', include('frontend.urls')),
 ]

@@ -9,5 +9,7 @@ urlpatterns = [
     path('is-authenticated', IsAuthenticated.as_view()),
     path('top-artists', TopArtists.as_view(), name='top-artists'),
     path('top-tracks', TopTracks.as_view()),
-    path('recently-played', RecentTracks.as_view())
+    path('recently-played', RecentTracks.as_view()),
+    path('artist', Artist.as_view(), name='artist'),
+    path('artist-top-tracks', ArtistTopTracks.as_view()),
 ]

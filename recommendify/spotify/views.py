@@ -145,3 +145,64 @@ class RecentTracks(APIView):
             response.append({"name": song_name, "artist": artist_string})
 
         return Response(response, status=status.HTTP_200_OK)
+    
+class Artist(APIView):
+    def get(self, request, format=None):
+        #get info for artists that match a keyword string
+
+        query = request.GET.get('q')
+        
+        endpoint = "search"
+
+        response = execute_spotify_api_call(self.request.session.session_key, endpoint)
+
+        #handling case of if we get error or nothing returned
+        if 'error' in response or 'items' not in response:
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        items = response.get('items')
+
+        response = []
+        
+        for item in items:
+            artist_id = item["id"]
+            genres = item["genres", []]
+            response.append({"artist_id": artist_id, "genres": genres})
+        
+        # artist = items[0]
+        # result = {
+        #     "id": artist["id"],
+        #     "name": artist["name"],
+        #     "genres": artist.get("genres", []),
+        #     "followers": artist["followers"]["total"],
+        #     "popularity": artist["popularity"],
+        #     "spotify_url": artist["external_urls"]["spotify"]
+        # }
+
+        return Response(response, status=status.HTTP_200_OK)
+    
+class ArtistTopTracks(APIView):
+    def get(self, request, format=None):
+        
+        endpoint = "artists/{artist_id}/top-tracks"
+
+        response = execute_spotify_api_call(self.request.session.session_key, endpoint)
+
+        #handling case of if we get error or nothing returned
+        if 'error' in response or 'items' not in response:
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        
+        items = response.get('items')
+
+        response = []
+        for item in items:
+            artist_string = ""
+            for i, artist in enumerate(item.get('track').get('artists')):
+                if i > 0:
+                    artist_string += ", "
+                name = artist.get('name')
+                artist_string += name
+            song_name = item['track']['name']
+            response.append({"name": song_name, "artist": artist_string})
+
+        return Response(response, status=status.HTTP_200_OK)

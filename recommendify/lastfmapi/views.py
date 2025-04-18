@@ -19,7 +19,7 @@ class SimilarArtists(APIView):
             "artist": artist_name,
             "api_key": LASTFM_API_KEY,
             "format": "json",
-            "limit": 10
+            "limit": 3
         }
 
         response = requests.get(endpoint, params=params)

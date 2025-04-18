@@ -5,13 +5,13 @@ import Image from 'react-bootstrap/Image';
 
 import './HeroStyles.css'
 import iphone from './iphone_spotify.png'
-
+import PinkFloyd from './Pink-Floyd-Dark-Side-of-the-Moon.webp'
 import SongCard from './SongCard';
 
 function Frontground() {
     return (
         <section>
-            <Container className="container-fluid">
+            <Container fluid>
                 <Card className="card text-bg-light mb-3 text-center">
                     <Card.Body>
                         <Card.Title> Welcome to Recommendify </Card.Title>
@@ -23,9 +23,15 @@ function Frontground() {
         </section>
     )
 }
+
 function Background(){
     return(
-        <SongCard/>
+        <>
+        <SongCard albumCover  = {PinkFloyd} artistName={'Pink Floyd'} songTitle = {"Us and Them"}/>
+        {/* <SongCard albumCover  = {PinkFloyd} artistName={'Pink Floyd'} songTitle = {"Us and Them"}/>
+        <SongCard albumCover  = {PinkFloyd} artistName={'Pink Floyd'} songTitle = {"Us and Them"}/>
+        <SongCard albumCover  = {PinkFloyd} artistName={'blah blah blah blah blah'} songTitle = {"long title long title long title long title long title long title"}/> */}
+        </>
     )
 }
 

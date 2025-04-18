@@ -14,8 +14,8 @@
 
 .background-layer{
     position: absolute;
-    top: 300 px;
-    left: 100 px;
+    right: 20%;
+    bottom: 50%;
     z-index: 1;
 }
 

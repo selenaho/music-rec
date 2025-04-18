@@ -52,15 +52,17 @@ const Similar = () => {
     async function getSimilar (artists) {
         const similarSet = new Set();
         const userListens = new Set(artists);
+        console.log("userListens:")
+        console.log(userListens);
         for(let i = 0; i < artists.length; i++) {
-            const url = 'lastfm/similar-artists?q=' + artists[i];
+            const url = 'lastfm/similar-artists?q=' + encodeURIComponent(artists[i]);
             let response = await fetch(url);
             let result = await response.json();
             if(result.error) {
                 continue;
             }
             result.similar_artists.forEach(d => {
-                if(!userListens.has(d)) { //because we don't want to add artists that a user already listens to
+                if(!userListens.has(d.artist)) { //because we don't want to add artists that a user already listens to
                     similarSet.add(d.artist);
                 }
             });

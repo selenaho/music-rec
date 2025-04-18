@@ -85,3 +85,8 @@ Selena -- 2025-4-17
 Selena -- 2025-4-18 11:40 AM
 - proxy request was because one of my artists has an & in their name - fixed by calling encodeURIComponent() on the artist name before adding it to url
 - also removed artists that the user already listens to from the list of similar artists
+
+Selena -- 2025-4-18 7:05 PM
+- fixed spotify/artist endpoint
+- started to work on compiling top tracks of each of the similar artists to pass over to open ai api
+- got the ids of the artists but now need to make api calls to get the top tracks of each of those artists

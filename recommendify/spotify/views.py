@@ -67,7 +67,7 @@ class TopArtists(APIView):
     def get(self, request, format=None):
         #default settings for top artists is top 10, medium time range (approx last 6 months), and offset 0 (returns the first item) 
 
-        endpoint = "top/artists"
+        endpoint = "/me/top/artists"
 
         response = execute_spotify_api_call(self.request.session.session_key, endpoint)
 
@@ -91,7 +91,7 @@ class TopTracks(APIView):
     def get(self, request, format=None):
         #default settings for top artists is top 10, medium time range (approx last 6 months), and offset 0 (returns the first item) 
 
-        endpoint = "top/tracks"
+        endpoint = "/me/top/tracks"
 
         response = execute_spotify_api_call(self.request.session.session_key, endpoint)
 
@@ -124,7 +124,7 @@ class RecentTracks(APIView):
     def get(self, request, format=None):
         #default settings for top artists is top 10, medium time range (approx last 6 months), and offset 0 (returns the first item) 
 
-        endpoint = "player/recently-played"
+        endpoint = "/me/player/recently-played"
 
         response = execute_spotify_api_call(self.request.session.session_key, endpoint)
 
@@ -160,22 +160,23 @@ class Artist(APIView):
 
         query = request.GET.get('q')
         
-        endpoint = "search"
+        endpoint = "/search?q=" + query + "&type=artist"
 
         response = execute_spotify_api_call(self.request.session.session_key, endpoint)
 
         #handling case of if we get error or nothing returned
-        if 'error' in response or 'items' not in response:
-            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        if 'error' in response or 'artists' not in response:
+            return Response({"error": "No artist"}, status=status.HTTP_204_NO_CONTENT)
 
-        items = response.get('items')
+        items = response.get('artists').get('items')
 
         response = []
         
-        for item in items:
-            artist_id = item["id"]
-            genres = item["genres", []]
-            response.append({"artist_id": artist_id, "genres": genres})
+        #getting just the first result because the others are either similar artists/artists with similar name which we don't need
+        item = items[0]
+        artist_id = item["id"]
+        genres = item.get("genres", [])
+        response.append({"artist_id": artist_id, "genres": genres})
         
         # artist = items[0]
         # result = {

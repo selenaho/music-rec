@@ -17,7 +17,7 @@ function Frontground() {
                         <Card.Title> Welcome to Recommendify </Card.Title>
                         <Card.Text>Discover your next favorite song</Card.Text>
                     </Card.Body>
-                    <Image className="img-thumbnails mx-auto" src={iphone}></Image>
+                    <Image className="img-thumbnails mx-auto anim" src={iphone}></Image>
                 </Card>
             </Container>
         </section>
@@ -27,7 +27,10 @@ function Frontground() {
 function Background(){
     return(
         <>
-        <SongCard albumCover  = {PinkFloyd} artistName={'Pink Floyd'} songTitle = {"Us and Them"}/>
+        <Container fluid>
+            <SongCard className = "song-1" albumCover  = {PinkFloyd} artistName={'Pink Floyd'} songTitle = {"Us and Them"}/>
+        </Container>
+        
         {/* <SongCard albumCover  = {PinkFloyd} artistName={'Pink Floyd'} songTitle = {"Us and Them"}/>
         <SongCard albumCover  = {PinkFloyd} artistName={'Pink Floyd'} songTitle = {"Us and Them"}/>
         <SongCard albumCover  = {PinkFloyd} artistName={'blah blah blah blah blah'} songTitle = {"long title long title long title long title long title long title"}/> */}

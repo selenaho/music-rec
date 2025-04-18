@@ -42,6 +42,8 @@ function App() {
     <div className="App">
       <Header url={url}/>
       <Hero />
+      <Hero />
+      <Hero />
     </div>
   )
 }

@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
-
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 import './headerStyles.css'
 import SpotifyIcon from './SpotifyIcon.png'
 
@@ -7,17 +11,23 @@ function Header({url}) {
     const s = "Connect Account "
     return (
         <>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Recommendify</span>
-            <a href={url}> 
-                <button type="button" class="btn btn-success">
-                    {s}
-                <img src = {SpotifyIcon} alt="buttonpng" border="0" width="25" height="25" />
-                </button>
-            </a>
-            </div>
-        </nav>
+        <Navbar bg="dark" data-bs-theme="dark">
+        <Container fluid>
+          <Navbar.Brand className ="mb-0 h1" href="">Recommendify</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="">Home</Nav.Link>
+            <Nav.Link href="">Features</Nav.Link>
+            <Nav.Link href="">About Us</Nav.Link>
+          </Nav>
+          <Nav className="ml-auto">
+            <Button href={url} variant="success">
+                {s}
+                <Image src={SpotifyIcon} alt="Spotify Logo png" border="0" width="25" height="25" ></Image>
+            </Button>
+          </Nav>
+        </Container>
+        </Navbar>
+        <br/>
         </>
     )
 }

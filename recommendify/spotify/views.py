@@ -106,13 +106,17 @@ class TopTracks(APIView):
         response = []
         for item in items:
             artist_string = ""
+            artist_array = []
+            #print(item.get('artists'))
             for i, artist in enumerate(item.get('artists')):
-                if i > 0:
-                    artist_string += ", "
-                name = artist.get('name')
-                artist_string += name
+                # if i > 0:
+                #     artist_string += ", "
+                # name = artist.get('name')
+                # artist_string += name
+                artist_array.append(artist.get('name'))
             song_name = item['name']
-            response.append({"name": song_name, "artist": artist_string})
+            #response.append({"name": song_name, "artist": artist_string})
+            response.append({"name": song_name, "artist": artist_array})
 
         return Response(response, status=status.HTTP_200_OK)
 
@@ -135,14 +139,18 @@ class RecentTracks(APIView):
         response = []
         for item in items:
             #print(item['track']['album'])
+            #print(item.get('track').get('album').get('artists'))
             artist_string = ""
+            artist_array = []
             for i, artist in enumerate(item.get('track').get('album').get('artists')):
-                if i > 0:
-                    artist_string += ", "
-                name = artist.get('name')
-                artist_string += name
+                # if i > 0:
+                #     artist_string += ", "
+                # name = artist.get('name')
+                # artist_string += name
+                artist_array.append(artist.get('name'))
             song_name = item['track']['name']
-            response.append({"name": song_name, "artist": artist_string})
+            # response.append({"name": song_name, "artist": artist_string})
+            response.append({"name": song_name, "artist": artist_array})
 
         return Response(response, status=status.HTTP_200_OK)
     

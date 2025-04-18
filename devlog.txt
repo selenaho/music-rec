@@ -76,3 +76,8 @@ Jacky -- 2025-4-17 12:33 AM
 Jacky -- 2025-4-17 7:50 PM
 - last.fm api is now able to show similar artists but there is an issue for some artists that have a name in another language
 - also added spotify api endpoints for retrieving an artist and their top tracks
+
+Selena -- 2025-4-17
+- changed spotify top tracks and recently played endpoint to return the artists in an array instead of string
+- created Similar.js page to display the artists that are similar to the artists the user listens to
+- however getting Could not proxy request error because fetch(lastfm/similar-artists?q=[artistname]) isn't going to the backend route

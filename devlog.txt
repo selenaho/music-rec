@@ -100,3 +100,6 @@ Jacky -- 2025-4-18 8:46 PM
 
 Selena -- 2025-4-18 9:53 PM
 - still working on the same thing
+
+Jacky -- 2025-4-18 11:30 PM
+- added a carousel on the App.js page

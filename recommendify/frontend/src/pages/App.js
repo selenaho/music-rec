@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Header from '../components/header';
 import Hero from '../components/Hero';
+import { HeroCarousel } from '../components/Hero'
 
 // const TodoList = () => {
 //   const [todos, setTodos] = useState([]);
@@ -42,7 +43,7 @@ function App() {
     <div className="App">
       <Header url={url} showConnectButton={true} />
       <Hero />
-      <Hero />
+      <HeroCarousel />
       <Hero />
     </div>
   )

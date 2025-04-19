@@ -94,3 +94,6 @@ Selena -- 2025-4-18 7:05 PM
 Jacky -- 2025-4-18 8:27 PM
 - fixed spotify/artist-top-tracks endpoint and added an artist query at the end of the url
 - added header to the similar-artists page on frontend but need to remove the "Connect Account" button
+
+Jacky -- 2025-4-18 8:46 PM
+- removed the "Connect Account" button on similar-artists page

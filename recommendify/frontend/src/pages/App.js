@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header url={url}/>
+      <Header url={url} showConnectButton={true} />
       <Hero />
       <Hero />
       <Hero />

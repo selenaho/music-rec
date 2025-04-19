@@ -88,7 +88,7 @@ const Similar = () => {
 
     return (
         <div>
-            <Header/>
+            <Header showConnectButton={false} />
             <h3>These are the artists similar to the artists you currently listen to:</h3>
             {similarArtists.map((d, index) => <p key={index}>{d}</p>)}
         </div>

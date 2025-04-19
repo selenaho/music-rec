@@ -7,7 +7,7 @@ import Image from 'react-bootstrap/Image';
 import './headerStyles.css'
 import SpotifyIcon from './SpotifyIcon.png'
 
-function Header({url}) {
+function Header({url, showConnectButton = true }) {
     const s = "Connect Account "
     return (
         <>
@@ -20,10 +20,12 @@ function Header({url}) {
             <Nav.Link href="">About Us</Nav.Link>
           </Nav>
           <Nav className="ml-auto">
-            <Button href={url} variant="success">
-                {s}
-                <Image src={SpotifyIcon} alt="Spotify Logo png" border="0" width="25" height="25" ></Image>
-            </Button>
+              {showConnectButton && (
+                <Button href={url} variant="success">
+                    {s}
+                    <Image src={SpotifyIcon} alt="Spotify Logo png" border="0" width="25" height="25" ></Image>
+                </Button>
+              )}
           </Nav>
         </Container>
         </Navbar>

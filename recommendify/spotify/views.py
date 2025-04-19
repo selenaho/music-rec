@@ -54,7 +54,7 @@ def spotify_callback(request, format=None):
     #return redirect('home:home') #urls are different now after react was added to app so home:home not working right now, fix later
     #return redirect('http://localhost:3000/top-artists') #DOES NOT WORK!!!!!! LEAVING HERE SO WE DO NOT ATTEMPT THIS AGAIN BECAUSE IT WILL NOT WORK!!!! - selena
     #return redirect('frontend:') #this is from when i was doing urls.py in the frontend folder
-    return redirect('http://127.0.0.1:3000/spotify-data')
+    return redirect('http://127.0.0.1:3000/similar-artists') # redirects user to the similar artists page
 
 
 #so frontend knows if user is authenticated or not this is the endpoint we hit to do so:
@@ -192,26 +192,37 @@ class Artist(APIView):
     
 class ArtistTopTracks(APIView):
     def get(self, request, format=None):
-        
-        endpoint = "artists/{artist_id}/top-tracks"
 
-        response = execute_spotify_api_call(self.request.session.session_key, endpoint)
+        query = request.GET.get("q")
+        if not query:
+            return Response({"error": "Missing artist name"}, status=status.HTTP_400_BAD_REQUEST)
 
-        #handling case of if we get error or nothing returned
-        if 'error' in response or 'items' not in response:
-            return Response({}, status=status.HTTP_204_NO_CONTENT)
-        
-        items = response.get('items')
+        # search for artist
+        search_endpoint = f"/search?q={query}&type=artist"
+        search_response = execute_spotify_api_call(self.request.session.session_key, search_endpoint)
+
+        artist_id = search_response["artists"]["items"][0]["id"]
+
+        # fetch top tracks of that artist using their Spotify's artist ID
+        endpoint = f"/artists/{artist_id}/top-tracks?market=US"
+        tracks_response = execute_spotify_api_call(self.request.session.session_key, endpoint)
+
+        if "error" in tracks_response or "tracks" not in tracks_response:
+            return Response({"error": "No top tracks found"}, status=status.HTTP_204_NO_CONTENT)
+
+        tracks = tracks_response["tracks"]
 
         response = []
-        for item in items:
-            artist_string = ""
-            for i, artist in enumerate(item.get('track').get('artists')):
-                if i > 0:
-                    artist_string += ", "
-                name = artist.get('name')
-                artist_string += name
-            song_name = item['track']['name']
-            response.append({"name": song_name, "artist": artist_string})
+        for track in tracks:
+            artist_array = []
+            for artist in track.get('artists', []):
+                artist_array.append(artist.get('name'))
+            
+            song_name = track.get('name')
+            response.append({
+                "name": song_name,
+                "artist": artist_array,
+                "spotify_url": track.get("external_urls", {}).get("spotify", "")
+            })
 
         return Response(response, status=status.HTTP_200_OK)

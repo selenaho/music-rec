@@ -90,3 +90,7 @@ Selena -- 2025-4-18 7:05 PM
 - fixed spotify/artist endpoint
 - started to work on compiling top tracks of each of the similar artists to pass over to open ai api
 - got the ids of the artists but now need to make api calls to get the top tracks of each of those artists
+
+Jacky -- 2025-4-18 8:27 PM
+- fixed spotify/artist-top-tracks endpoint and added an artist query at the end of the url
+- added header to the similar-artists page on frontend but need to remove the "Connect Account" button

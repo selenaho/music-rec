@@ -11,5 +11,5 @@ urlpatterns = [
     path('top-tracks', TopTracks.as_view()),
     path('recently-played', RecentTracks.as_view()),
     path('artist', Artist.as_view(), name='artist'),
-    path('artist-top-tracks', ArtistTopTracks.as_view()),
+    path('artist-top-tracks', ArtistTopTracks.as_view(), name='artist'),
 ]

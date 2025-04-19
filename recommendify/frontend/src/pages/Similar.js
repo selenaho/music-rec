@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useMemo} from "react";
+import Header from '../components/header';
 
 const Similar = () => {
     //get top artist data
@@ -87,6 +88,7 @@ const Similar = () => {
 
     return (
         <div>
+            <Header/>
             <h3>These are the artists similar to the artists you currently listen to:</h3>
             {similarArtists.map((d, index) => <p key={index}>{d}</p>)}
         </div>

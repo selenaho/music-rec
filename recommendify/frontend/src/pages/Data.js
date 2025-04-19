@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Header from '../components/header';
 
 function Data(){
     //get top artist data
@@ -31,6 +32,7 @@ function Data(){
 
     return(
         <div>
+            <Header showConnectButton={false} />
             <p>These are your top artists</p>
             {artistData.map(d => <p>{d.name}: {d.followers} followers</p>)}
             <p>These are your top tracks</p>

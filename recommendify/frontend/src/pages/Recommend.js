@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useMemo} from "react";
+import Header from '../components/header';
 
 const Recommend = () => {
     //get top artist data
@@ -131,6 +132,7 @@ const Recommend = () => {
 
     return (
         <div>
+            <Header showConnectButton={false} />
             <h3>This is the full list of recommended songs:</h3>
             {songList.map((d, index) => <p key={index}>{d}</p>)}
         </div>

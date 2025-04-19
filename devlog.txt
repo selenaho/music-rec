@@ -116,3 +116,6 @@ Uncaught (in promise) SyntaxError: Unexpected token 'P', "Proxy erro"... is not 
 - perhaps because requests to artist-top-tracks are being made at the same time as requests are being made to similar-artists endpoint??
 - the error isn't specific to an artist because the artists who are getting the internal server error have successful made requests to that endpoint previously
 - it's also different artists triggering these errors each time
+
+Jacky -- 2025-4-19 1:18 PM
+- added a dropdown menu after the user connects their Spotify account where they can access their spotify data, similar artists, and recommended songs.

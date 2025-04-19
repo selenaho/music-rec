@@ -14,11 +14,11 @@ function Header({url, showConnectButton = true }) {
         <>
         <Navbar bg="dark" data-bs-theme="dark">
         <Container fluid>
-          <Navbar.Brand className ="mb-0 h1" href="">Recommendify</Navbar.Brand>
+          <Navbar.Brand className ="mb-0 h1" href="/">Recommendify</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="">Home</Nav.Link>
-            <Nav.Link href="">Features</Nav.Link>
-            <Nav.Link href="">About Us</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/features">Features</Nav.Link>
+            <Nav.Link href="/about-us">About Us</Nav.Link>
           </Nav>
           <Nav className="ml-auto">
               {showConnectButton ? (

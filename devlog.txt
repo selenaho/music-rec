@@ -103,3 +103,16 @@ Selena -- 2025-4-18 9:53 PM
 
 Jacky -- 2025-4-18 11:30 PM
 - added a carousel on the App.js page
+
+Selena -- 2025-4-19 1:35 AM
+- I can see the list of recommended songs being generated but it's a lot of songs with a lot of repeats probably because of the asynchronous handling of calls in js??
+- but then the calls towards the end all end up getting errors below
+- Errors: 
+GET http://127.0.0.1:3000/spotify/artist-top-tracks?q=Lucy%20Dacus 500 (Internal Server Error)
+getSongList @ Recommend.js:99
+Uncaught (in promise) SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+and also:
+Uncaught (in promise) SyntaxError: Unexpected token 'P', "Proxy erro"... is not valid JSON
+- perhaps because requests to artist-top-tracks are being made at the same time as requests are being made to similar-artists endpoint??
+- the error isn't specific to an artist because the artists who are getting the internal server error have successful made requests to that endpoint previously
+- it's also different artists triggering these errors each time

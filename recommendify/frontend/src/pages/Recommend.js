@@ -39,7 +39,7 @@ const Recommend = () => {
         for(let i = 0; i < tops.length; i++) {
             (tops[i].artist).map(d => listensToSet.add(d));
         }
-        console.log(listensToSet);
+        // console.log(listensToSet);
         return Array.from(listensToSet);
     }
 
@@ -83,7 +83,7 @@ const Recommend = () => {
             setSimilarArtists(result);
         };
     
-        if (userListensTo.length > 0) {
+        if (userListensTo.length > 0 && userListensTo.length >= artistData.length) {
             fetchSimilar();
         }
     }, [userListensTo]);
@@ -93,41 +93,27 @@ const Recommend = () => {
 
     //helper function to populate songList
     const getSongList = async(artists) => {
-        const artistIDs = new Set();
-        for(let i = 0; i < artists.length; i++) {
-            const url = "spotify/artist?q=" + encodeURIComponent(artists[i]);
-            let response = await fetch(url);
-            let result = await response.json();
-            if(result.error) {
-                continue;
-            }
-            console.log(result.artist_id);
-            artistIDs.add(result.artist_id);
-        }
-        const artistIDArray = Array.from(artistIDs);
-        //then make calls to artist-top-tracks on each of the ids in artistIDArray
         const songSet = new Set();
-        for(let i = 0; i < artistIDArray.length; i++) {
-            const url = "spotify/artist-top-tracks?q=" + encodeURIComponent(artistIDArray[i]);
+        for(let i = 0; i < artists.length; i++) {
+            const url = "spotify/artist-top-tracks?q=" + encodeURIComponent(artists[i]);
             let response = await fetch(url);
             let result = await response.json();
             if(result.error) {
                 continue;
             }
-            for(let r = 0; r < result.length; r++) {
-                const artistString = "";
-                for(let j = 0; j < result[r].artist.length; j++) {
+            result.forEach((r) => {
+                let songInfo = r.name + " by ";
+                for(let j = 0; j < r.artist.length; j++) {
                     if(j > 0) {
-                        artistString += ", "
+                        songInfo += ", ";
                     }
-                    artistString += result[r].artist[j];
+                    songInfo += r.artist[j];
                 }
-                const song = result[r].name + " by " + artistString;
-                console.log(song);
-                songSet.add(song);
-            }
-            
+                console.log(songInfo);
+                songSet.add(songInfo);
+            });
         }
+        console.log(songSet);
         return Array.from(songSet);
     };
 
@@ -138,7 +124,7 @@ const Recommend = () => {
             setSongList(result);
         };
 
-        if (similarArtists.length > 0) {
+        if (similarArtists.length > 2*userListensTo.length) {
             fetchSongList();
         }
     }, [similarArtists]);

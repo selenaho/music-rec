@@ -97,3 +97,6 @@ Jacky -- 2025-4-18 8:27 PM
 
 Jacky -- 2025-4-18 8:46 PM
 - removed the "Connect Account" button on similar-artists page
+
+Selena -- 2025-4-18 9:53 PM
+- still working on the same thing

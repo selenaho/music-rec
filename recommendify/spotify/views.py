@@ -176,7 +176,7 @@ class Artist(APIView):
         item = items[0]
         artist_id = item["id"]
         genres = item.get("genres", [])
-        response.append({"artist_id": artist_id, "genres": genres})
+        # response.append({"artist_id": artist_id, "genres": genres})
         
         # artist = items[0]
         # result = {
@@ -188,7 +188,7 @@ class Artist(APIView):
         #     "spotify_url": artist["external_urls"]["spotify"]
         # }
 
-        return Response(response, status=status.HTTP_200_OK)
+        return Response({"artist_id": artist_id, "genres": genres}, status=status.HTTP_200_OK)
     
 class ArtistTopTracks(APIView):
     def get(self, request, format=None):

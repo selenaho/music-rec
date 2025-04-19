@@ -5,6 +5,7 @@ import App from './pages/App';
 import Data from './pages/Data';
 import Similar from './pages/Similar';
 import 'bootstrap/dist/css/bootstrap.css';
+import Recommend from './pages/Recommend';
 
 export default function Main() {
   return (
@@ -13,6 +14,7 @@ export default function Main() {
         <Route path="/" element={<App />}/>
         <Route path="/spotify-data" element={<Data />}/>
         <Route path='/similar-artists' element={<Similar />}/>
+        <Route path='/recommendations' element={<Recommend />}/>
       </Routes>
     </BrowserRouter>
   );

@@ -101,10 +101,34 @@ const Recommend = () => {
             if(result.error) {
                 continue;
             }
+            console.log(result.artist_id);
             artistIDs.add(result.artist_id);
         }
         const artistIDArray = Array.from(artistIDs);
         //then make calls to artist-top-tracks on each of the ids in artistIDArray
+        const songSet = new Set();
+        for(let i = 0; i < artistIDArray.length; i++) {
+            const url = "spotify/artist-top-tracks?q=" + encodeURIComponent(artistIDArray[i]);
+            let response = await fetch(url);
+            let result = await response.json();
+            if(result.error) {
+                continue;
+            }
+            for(let r = 0; r < result.length; r++) {
+                const artistString = "";
+                for(let j = 0; j < result[r].artist.length; j++) {
+                    if(j > 0) {
+                        artistString += ", "
+                    }
+                    artistString += result[r].artist[j];
+                }
+                const song = result[r].name + " by " + artistString;
+                console.log(song);
+                songSet.add(song);
+            }
+            
+        }
+        return Array.from(songSet);
     };
 
     //when we have our list of similar artists, then we can get the songs of those artists to pass to openai
@@ -121,8 +145,8 @@ const Recommend = () => {
 
     return (
         <div>
-            <h3>These are the artists similar to the artists you currently listen to:</h3>
-            {similarArtists.map((d, index) => <p key={index}>{d}</p>)}
+            <h3>This is the full list of recommended songs:</h3>
+            {songList.map((d, index) => <p key={index}>{d}</p>)}
         </div>
     );
 }

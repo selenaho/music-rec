@@ -59,6 +59,8 @@ const HeroCarousel = () => {
     return (
         <Carousel 
         data-bs-theme="dark"
+        wrap = {true}
+        interval = {10000}
         prevIcon={<span className="custom-carousel-arrow-left">{'<'}</span>}
         nextIcon={<span className="custom-carousel-arrow-right">{'>'}</span>}>
             <Carousel.Item>

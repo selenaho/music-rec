@@ -121,3 +121,4 @@ Jacky -- 2025-4-19 1:44 PM
 - added a dropdown menu after the user connects their Spotify account where they can access their spotify data, similar artists, and recommended songs.
 - also made a Features and About Us page
 - also made the Recommendify text on the top left of the header return the user back to the App.js page
+- made carousel stay in each slide for 10 sec for readability

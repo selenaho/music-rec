@@ -31,14 +31,14 @@ const Recommend = () => {
 
     //using the data we get from spotify api to compile an array of the artists the user already listens to
     //helper function to find artists the user listens to
-    const getListensTo = (artists, recents, tops) => {
+    const getListensTo = () => {
         const listensToSet = new Set();
-        artists.map(d => listensToSet.add(d.name));
-        for(let i = 0; i < recents.length; i++) {
-            (recents[i].artist).map(d => listensToSet.add(d));
+        artistData.map(d => listensToSet.add(d.name));
+        for(let i = 0; i < songData.length; i++) {
+            (songData[i].artist).map(d => listensToSet.add(d));
         }
-        for(let i = 0; i < tops.length; i++) {
-            (tops[i].artist).map(d => listensToSet.add(d));
+        for(let i = 0; i < recentTracks.length; i++) {
+            (recentTracks[i].artist).map(d => listensToSet.add(d));
         }
         // console.log(listensToSet);
         return Array.from(listensToSet);
@@ -46,26 +46,34 @@ const Recommend = () => {
 
     //when we get the data from spotify, populate userListensTo with the names of the artists the user listens to
     const userListensTo = useMemo(
-        () => getListensTo(artistData, recentTracks, songData),
+        () => {
+            if(artistData && recentTracks && songData) {
+                return getListensTo();
+            }
+            else {
+                return [];
+            }
+            
+        },
         [artistData, recentTracks, songData]
     );
 
     //for each artist in userListensTo, find the similar artists 
     //helper function to get similar artists
-    async function getSimilar (artists) {
+    async function getSimilar () {
         const similarSet = new Set();
-        const userListens = new Set(artists);
+        const userListensToSet = new Set(userListensTo);
         // console.log("userListens:")
         // console.log(userListens);
-        for(let i = 0; i < artists.length; i++) {
-            const url = 'lastfm/similar-artists?q=' + encodeURIComponent(artists[i]);
+        for(let i = 0; i < userListensTo.length; i++) {
+            const url = 'lastfm/similar-artists?q=' + encodeURIComponent(userListensTo[i]);
             let response = await fetch(url);
             let result = await response.json();
             if(result.error) {
                 continue;
             }
             result.similar_artists.forEach(d => {
-                if(!userListens.has(d.artist)) { //because we don't want to add artists that a user already listens to
+                if(!userListensToSet.has(d.artist)) { //because we don't want to add artists that a user already listens to
                     similarSet.add(d.artist);
                 }
             });
@@ -80,7 +88,7 @@ const Recommend = () => {
     //once userListensTo changes/updates then also update similarArtists:
     useEffect(() => {
         const fetchSimilar = async () => {
-            const result = await getSimilar(userListensTo);
+            const result = await getSimilar();
             setSimilarArtists(result);
         };
     
@@ -93,10 +101,12 @@ const Recommend = () => {
     const [songList, setSongList] = useState([]);
 
     //helper function to populate songList
-    const getSongList = async(artists) => {
+    const getSongList = async() => {
+        //console.log("getting song list");
         const songSet = new Set();
-        for(let i = 0; i < artists.length; i++) {
-            const url = "spotify/artist-top-tracks?q=" + encodeURIComponent(artists[i]);
+        for(let i = 0; i < similarArtists.length; i++) {
+            const url = "spotify/artist-top-tracks?q=" + encodeURIComponent(similarArtists[i]);
+            //console.log(url);
             let response = await fetch(url);
             let result = await response.json();
             if(result.error) {
@@ -110,7 +120,7 @@ const Recommend = () => {
                     }
                     songInfo += r.artist[j];
                 }
-                console.log(songInfo);
+                //console.log(songInfo);
                 songSet.add(songInfo);
             });
         }
@@ -121,7 +131,7 @@ const Recommend = () => {
     //when we have our list of similar artists, then we can get the songs of those artists to pass to openai
     useEffect(() => {
         const fetchSongList = async () => {
-            const result = await getSongList(similarArtists);
+            const result = await getSongList();
             setSongList(result);
         };
 
@@ -129,6 +139,42 @@ const Recommend = () => {
             fetchSongList();
         }
     }, [similarArtists]);
+
+    //once we get the top songs of the artists we can make the call to openai
+    //this is so we don't keep making calls to openAI even if songList updates again because otherwise it'll be more than one call and we won't get the correct number of songs (i think)
+    const [hasFetchedFromOpenAI, setHasFetchedFromOpenAI] = useState(false);
+    const [recs, setRecs] = useState([]);
+
+    const getRecs = async () => {
+        const userSpotifyData = {
+            topArtists: artistData,
+            topSongs: songData,
+            recents: recentTracks
+        };
+        await fetch("", { //NEED TO ADD THE URL FOR OPENAIAPI STUFF
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                spotify_data: userSpotifyData,
+                list_of_songs: songList
+            }),
+        });
+    }
+
+    //commented out just to have clean working ish version pushed to github
+    // useEffect(() => {
+    //     const fetchRecs = async () => {
+    //         setHasFetchedFromOpenAI(true);
+    //         const result = await getRecs();
+    //         setRecs(result);
+    //     }
+    //     if(songList.length > similarArtists.length*8 && !hasFetchedFromOpenAI) {
+    //         fetchRecs();
+    //     }
+    // }, [songList, hasFetchedFromOpenAI]);
+
 
     return (
         <div>

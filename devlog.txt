@@ -122,3 +122,6 @@ Jacky -- 2025-4-19 1:44 PM
 - also made a Features and About Us page
 - also made the Recommendify text on the top left of the header return the user back to the App.js page
 - made carousel stay in each slide for 10 sec for readability
+
+Selena -- 2025-4-20 1:15 AM
+- cleaned up code, continuing to work on open ai stuff

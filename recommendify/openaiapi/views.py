@@ -4,9 +4,12 @@ from rest_framework.response import Response
 from .util import *
 
 class MusicRecs(APIView):
-    def get(self, request, format=None):
-        if request.method == 'POST':
-            #take data passed in via POST request and puts it into spotify_data if exists, else puts "" into spotify_data
-            spotify_data = request.POST.get("spotify_data", "")
-            if(spotify_data != ""):
-                recs = generate_music_recs(spotify_data)
+    def post(self, request, format=None):
+        #take data passed in via POST request and puts it into spotify_data and list_of_songs if exists, else puts "" into them
+        spotify_data = request.POST.get("spotify_data", "")
+        list_of_songs = request.POST.get("list_of_songs", "")
+        if(not spotify_data or not list_of_songs):
+            return Response({"error": "missing the needed data"})
+        recs = generate_music_recs(spotify_data, list_of_songs)
+        return Response({"recommendations" : recs})
+                

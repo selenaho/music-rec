@@ -146,12 +146,38 @@ const Recommend = () => {
     const [recs, setRecs] = useState([]);
 
     const getRecs = async () => {
+        let artistDataCleaned = []; //an array of the top artists names
+        artistData.forEach(element => {
+            artistDataCleaned.push(element.name);
+        });
+        let songDataCleaned = []; //an array of top songs in the form song name by artist1, artist2, ..
+        songData.forEach(element => {
+            let songInfo = element.name + " by ";
+            for(let j = 0; j < element.artist.length; j++) {
+                if(j > 0) {
+                    songInfo += ", ";
+                }
+                songInfo += element.artist[j];
+            }
+            songDataCleaned.push(songInfo);
+        });
+        let recentTracksCleaned = []; //array of recent tracks in the form song name by artist1, artist2, ..
+        recentTracks.forEach(element => {
+            let songInfo = element.name + " by ";
+            for(let j = 0; j < element.artist.length; j++) {
+                if(j > 0) {
+                    songInfo += ", ";
+                }
+                songInfo += element.artist[j];
+            }
+            recentTracksCleaned.push(songInfo);
+        });
         const userSpotifyData = {
-            topArtists: artistData,
-            topSongs: songData,
-            recents: recentTracks
+            topArtists: artistDataCleaned,
+            topSongs: songDataCleaned,
+            recents: recentTracksCleaned
         };
-        await fetch("", { //NEED TO ADD THE URL FOR OPENAIAPI STUFF
+        let response = await fetch("openai/get-recs", { 
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -161,25 +187,29 @@ const Recommend = () => {
                 list_of_songs: songList
             }),
         });
+        let result = await response.json();
+        return result.recommendations;
+        //console.log(result);
     }
 
-    //commented out just to have clean working ish version pushed to github
-    // useEffect(() => {
-    //     const fetchRecs = async () => {
-    //         setHasFetchedFromOpenAI(true);
-    //         const result = await getRecs();
-    //         setRecs(result);
-    //     }
-    //     if(songList.length > similarArtists.length*8 && !hasFetchedFromOpenAI) {
-    //         fetchRecs();
-    //     }
-    // }, [songList, hasFetchedFromOpenAI]);
+    useEffect(() => {
+        const fetchRecs = async () => {
+            setHasFetchedFromOpenAI(true);
+            const result = await getRecs();
+            setRecs(result);
+        }
+        if(songList.length > similarArtists.length*8 && !hasFetchedFromOpenAI) {
+            fetchRecs();
+        }
+    }, [songList, hasFetchedFromOpenAI]);
 
 
     return (
         <div>
             <Header showConnectButton={false} />
-            <h3>This is the full list of recommended songs:</h3>
+            <h3>Here are the songs openAI recommends:</h3>
+            <p>{recs}</p>
+            <h3>These are the similar songs:</h3>
             {songList.map((d, index) => <p key={index}>{d}</p>)}
         </div>
     );

@@ -125,3 +125,8 @@ Jacky -- 2025-4-19 1:44 PM
 
 Selena -- 2025-4-20 1:15 AM
 - cleaned up code, continuing to work on open ai stuff
+
+Selena -- 2025-4-20 2:41 AM
+- /recommendations now displays open ai recommendations
+- need to make sure the songs are all real
+- also need to speed up the process somehow - no one wants to wait an hour just to get song recommendations

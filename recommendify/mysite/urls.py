@@ -20,6 +20,7 @@ from rest_framework import routers
 from home import views
 from spotify.views import AuthURL
 from lastfmapi.views import *
+from openaiapi.views import *
 
 router = routers.DefaultRouter()
 router.register(r'home', views.TodoViewSet, 'home')
@@ -29,6 +30,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("spotify/", include("spotify.urls")),
     path("lastfm/", include("lastfmapi.urls")),
+    path("openai/", include("openaiapi.urls")),
     path('', views.home),
     #path('frontend/', include('frontend.urls')),
 ]

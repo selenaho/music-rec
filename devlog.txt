@@ -130,3 +130,4 @@ Selena -- 2025-4-20 2:41 AM
 - /recommendations now displays open ai recommendations
 - need to make sure the songs are all real
 - also need to speed up the process somehow - no one wants to wait an hour just to get song recommendations
+- and the openai recommendations aren't formatted yet, it's just directly what openai generates - need to get the response formatted properly

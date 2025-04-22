@@ -143,3 +143,5 @@ KeyError: 'artists' from spotify's views.py
 - also raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
 urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='ws.audioscrobbler.com', port=443): Max retries exceeded with url: /2.0/?method=artist.getsimilar&artist=Riley+Whittaker&api_key=2b421c867985de9e7d12ddace94cd723&format=json&limit=1 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7faca2ded060>: Failed to establish a new connection: [Errno 101] Network is unreachable'))?????
 
+Jacky -- 2025-4-21
+- added a space before each line of data to easier readability

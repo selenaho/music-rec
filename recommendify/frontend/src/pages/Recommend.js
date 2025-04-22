@@ -208,10 +208,10 @@ const Recommend = () => {
     return (
         <div>
             <Header showConnectButton={false} />
-            <h3>Here are the songs openAI recommends:</h3>
+            <h3>&nbsp;Here are the songs openAI recommends:</h3>
             <div dangerouslySetInnerHTML={{ __html: recs }} />
-            <h3>These are the similar songs:</h3>
-            {songList.map((d, index) => <p key={index}>{d}</p>)}
+            <h3>&nbsp;These are the similar songs:</h3>
+            {songList.map((d, index) => <p key={index}>&nbsp;{d}</p>)}
         </div>
     );
 }

@@ -33,12 +33,12 @@ function Data(){
     return(
         <div>
             <Header showConnectButton={false} />
-            <p>These are your top artists</p>
-            {artistData.map(d => <p>{d.name}: {d.followers} followers</p>)}
-            <p>These are your top tracks</p>
-            {songData.map(d => <p>{d.name} by {d.artist}</p>)}
-            <p>These are your recent listens</p>
-            {recentTracks.map(d => <p>{d.name} {d.artist}</p>)}
+            <h3>These are your top artists</h3>
+            {artistData.map(d => <p>&nbsp;{d.name}: {d.followers} followers</p>)}
+            <h3>These are your top tracks</h3>
+            {songData.map(d => <p>&nbsp;{d.name} by {d.artist}</p>)}
+            <h3>These are your recent listens</h3>
+            {recentTracks.map(d => <p>&nbsp;{d.name} {d.artist}</p>)}
             
         </div>
     )

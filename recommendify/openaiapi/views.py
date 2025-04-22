@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .util import *
+import markdown
 
 class MusicRecs(APIView):
     def post(self, request, format=None):
@@ -12,5 +13,7 @@ class MusicRecs(APIView):
             return Response({"error": "missing the needed data"})
         recs = generate_music_recs(spotify_data, list_of_songs)
         print(recs)
-        return Response({"recommendations" : recs})
+        html = markdown.markdown(recs)
+        print(html)
+        return Response({"recommendations" : html})
                 

@@ -29,6 +29,7 @@ const Recommend = () => {
         fetchData();
     }, []);
 
+    const isDataReady = artistData.length === 20 && songData.length === 20 && recentTracks.length === 20;
     //using the data we get from spotify api to compile an array of the artists the user already listens to
     //helper function to find artists the user listens to
     const getListensTo = () => {
@@ -47,7 +48,7 @@ const Recommend = () => {
     //when we get the data from spotify, populate userListensTo with the names of the artists the user listens to
     const userListensTo = useMemo(
         () => {
-            if(artistData && recentTracks && songData) {
+            if(isDataReady) {
                 return getListensTo();
             }
             else {
@@ -92,7 +93,7 @@ const Recommend = () => {
             setSimilarArtists(result);
         };
     
-        if (userListensTo.length > 0 && userListensTo.length >= artistData.length) {
+        if (isDataReady && userListensTo.length > 0) {
             fetchSimilar();
         }
     }, [userListensTo]);
@@ -135,7 +136,7 @@ const Recommend = () => {
             setSongList(result);
         };
 
-        if (similarArtists.length > 2*userListensTo.length) {
+        if (similarArtists.length > 0.5*userListensTo.length) {
             fetchSongList();
         }
     }, [similarArtists]);
@@ -198,7 +199,7 @@ const Recommend = () => {
             const result = await getRecs();
             setRecs(result);
         }
-        if(songList.length > similarArtists.length*8 && !hasFetchedFromOpenAI) {
+        if(songList.length > similarArtists.length*9 && !hasFetchedFromOpenAI) {
             fetchRecs();
         }
     }, [songList, hasFetchedFromOpenAI]);
@@ -208,7 +209,7 @@ const Recommend = () => {
         <div>
             <Header showConnectButton={false} />
             <h3>Here are the songs openAI recommends:</h3>
-            <p>{recs}</p>
+            <div dangerouslySetInnerHTML={{ __html: recs }} />
             <h3>These are the similar songs:</h3>
             {songList.map((d, index) => <p key={index}>{d}</p>)}
         </div>

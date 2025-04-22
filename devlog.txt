@@ -131,3 +131,15 @@ Selena -- 2025-4-20 2:41 AM
 - need to make sure the songs are all real
 - also need to speed up the process somehow - no one wants to wait an hour just to get song recommendations
 - and the openai recommendations aren't formatted yet, it's just directly what openai generates - need to get the response formatted properly
+
+Selena -- 2025-4-21 
+- pip install markdown to display the openai result as html
+- getting error artist_id = search_response["artists"]["items"][0]["id"]
+KeyError: 'artists' from spotify's views.py
+- changed it so that we only start getting similar artists once all the spotify data has been populated because I noticed that the similar artists are sometimes artists that user already listens to
+- requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.spotify.com', port=443): Max retries exceeded with url: /v1/search?q=Meg%20Mac&type=artist (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f5e28528400>: Failed to establish a new connection: [Errno 101] Network is unreachable'))
+- also got the above error
+- changed package.json proxy so that it points to 127.0.0.1:8000 instead of localhost:8000 because I was getting could not proxy request errors
+- also raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='ws.audioscrobbler.com', port=443): Max retries exceeded with url: /2.0/?method=artist.getsimilar&artist=Riley+Whittaker&api_key=2b421c867985de9e7d12ddace94cd723&format=json&limit=1 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7faca2ded060>: Failed to establish a new connection: [Errno 101] Network is unreachable'))?????
+

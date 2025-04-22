@@ -16,7 +16,7 @@ def generate_music_recs(spotify_data, list_of_songs):
         model="gpt-4o-mini",
         messages=[{
             "role": "system",
-            "content": "You are a music recommendation assistant. Recommend ten unique songs from the provided list of songs that the user DOESN'T already listen to based on their spotify data. The recommendations MUST be a song from the list of songs provided. For each song, explain why the user would enjoy listening to it in one brief sentence."
+            "content": "You are a music recommendation assistant. Recommend ten unique songs from the provided list of songs that the user DOESN'T already listen to based on their spotify data. The recommendations MUST be a song from the list of songs provided. Avoid recommending more than one song per artist. For each song, explain why the user would enjoy listening to it in one brief sentence."
         },{
             "role": "user",
             "content": f"""List of songs: {song_list_string} spotify data: {spotify_data_string}"""

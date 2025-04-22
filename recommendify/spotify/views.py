@@ -54,7 +54,7 @@ def spotify_callback(request, format=None):
     #return redirect('home:home') #urls are different now after react was added to app so home:home not working right now, fix later
     #return redirect('http://localhost:3000/top-artists') #DOES NOT WORK!!!!!! LEAVING HERE SO WE DO NOT ATTEMPT THIS AGAIN BECAUSE IT WILL NOT WORK!!!! - selena
     #return redirect('frontend:') #this is from when i was doing urls.py in the frontend folder
-    return redirect('http://127.0.0.1:3000/similar-artists') # redirects user to the similar artists page
+    return redirect('http://127.0.0.1:3000/recommendations') # redirects user to the similar artists page
 
 
 #so frontend knows if user is authenticated or not this is the endpoint we hit to do so:

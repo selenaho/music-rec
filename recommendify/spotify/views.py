@@ -197,32 +197,9 @@ class ArtistTopTracks(APIView):
         if not query:
             return Response({"error": "Missing artist name"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # search for artist
-        search_endpoint = f"/search?q={query}&type=artist"
-        search_response = execute_spotify_api_call(self.request.session.session_key, search_endpoint)
+        response = get_artist_top_tracks(query, self.request.session.session_key)
 
-        artist_id = search_response["artists"]["items"][0]["id"]
-
-        # fetch top tracks of that artist using their Spotify's artist ID
-        endpoint = f"/artists/{artist_id}/top-tracks?market=US"
-        tracks_response = execute_spotify_api_call(self.request.session.session_key, endpoint)
-
-        if "error" in tracks_response or "tracks" not in tracks_response:
+        if "error" in response:
             return Response({"error": "No top tracks found"}, status=status.HTTP_204_NO_CONTENT)
-
-        tracks = tracks_response["tracks"]
-
-        response = []
-        for track in tracks:
-            artist_array = []
-            for artist in track.get('artists', []):
-                artist_array.append(artist.get('name'))
-            
-            song_name = track.get('name')
-            response.append({
-                "name": song_name,
-                "artist": artist_array,
-                "spotify_url": track.get("external_urls", {}).get("spotify", "")
-            })
 
         return Response(response, status=status.HTTP_200_OK)

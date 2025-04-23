@@ -1,10 +1,5 @@
 from .util import *
 from .credentials import LASTFM_API_KEY
-from requests import Request, post
-from rest_framework import status
-from rest_framework.views import APIView
-from rest_framework.response import Response
-import requests
 
 class SimilarArtists(APIView):
     def get(self, request, format=None):

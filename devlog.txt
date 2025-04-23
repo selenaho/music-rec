@@ -145,3 +145,6 @@ urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='ws.audioscrobbler.co
 
 Jacky -- 2025-4-21
 - added a space before each line of data to easier readability
+
+Selena -- 2025-4-23
+- added single endpoint (rec/get-recs) to get the songs recommendations

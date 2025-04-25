@@ -39,9 +39,19 @@ function App() {
     fetchData();
   }, []);
 
+  const [isAuth, setAuth] = useState('');
+  useEffect(() => {
+    const fetchAuth = async () => {
+      const response = await fetch('spotify/is-authenticated');
+      const result = await response.json();
+      setAuth(result.status)
+    };
+    fetchAuth();
+  }, []);
+
   return (
     <div className="App">
-      <Header url={url} showConnectButton={true} />
+      <Header url={url} showConnectButton={!isAuth} />
       <Hero />
       <HeroCarousel />
       <Hero />

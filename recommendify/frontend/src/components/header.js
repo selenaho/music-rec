@@ -8,7 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import './headerStyles.css'
 import SpotifyIcon from './SpotifyIcon.png'
 
-function Header({url, showConnectButton = true }) {
+function Header({url, showConnectButton}) {
     const s = "Connect Account "
     return (
         <>

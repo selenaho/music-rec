@@ -1,10 +1,5 @@
-import React, { useState } from 'react'
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Image from 'react-bootstrap/Image';
-import Dropdown from 'react-bootstrap/Dropdown';
+import React, { useState, useEffect} from 'react'
+import {Nav, Navbar, Container, Button, Image, Dropdown} from 'react-bootstrap';
 import './headerStyles.css'
 import SpotifyIcon from './SpotifyIcon.png'
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Header from '../components/header';
 import Hero from '../components/Hero';
+import Footer from '../components/Footer';
 import { HeroCarousel } from '../components/Hero'
 
 // const TodoList = () => {
@@ -54,7 +55,7 @@ function App() {
       <Header url={url} showConnectButton={!isAuth} />
       <Hero />
       <HeroCarousel />
-      <Hero />
+      <Footer />
     </div>
   )
 }
